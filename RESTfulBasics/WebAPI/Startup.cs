@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Application;
+using Persistence;
+using Shared;
 
 namespace WebAPI
 {
@@ -21,6 +23,9 @@ namespace WebAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationLayer();
+            services.AddSharedInfrastructure(Configuration);
+            services.AddPersistenceInfrastructure(Configuration);
+            
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
